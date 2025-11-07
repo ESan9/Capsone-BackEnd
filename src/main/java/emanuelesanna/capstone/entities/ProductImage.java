@@ -1,0 +1,35 @@
+package emanuelesanna.capstone.entities;
+
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.UUID;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+public class ProductImage {
+    @Id
+    @GeneratedValue
+    @Setter(AccessLevel.NONE)
+    private UUID idProductImage;
+    private String description;
+    private String imageUrl;
+    private String altText;
+    @Column(name = "display_order")
+    private int order;
+    @ManyToOne
+    @JoinColumn(name = "idProduct")
+    private Product product;
+
+    public ProductImage(String description, String imageUrl, String altText, int order) {
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.altText = altText;
+        this.order = order;
+    }
+}
