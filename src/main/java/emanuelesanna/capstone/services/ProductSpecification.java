@@ -57,7 +57,7 @@ public class ProductSpecification {
         return (root, query, criteriaBuilder) -> {
             // Join" sulla relazione "category" del prodotto
             Join<Product, Category> categoryJoin = root.join("category");
-            
+
             return criteriaBuilder.equal(categoryJoin.get("idCategory"), categoryId);
         };
     }
@@ -76,5 +76,6 @@ public class ProductSpecification {
         return (root, query, criteriaBuilder) ->
                 criteriaBuilder.equal(root.get("highlighted"), highlighted);
     }
+
 
 }
