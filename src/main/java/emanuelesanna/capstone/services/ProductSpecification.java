@@ -20,9 +20,9 @@ public class ProductSpecification {
 
 //    Filtro per contenuto descrizione
 
-    public static Specification<Product> descriptionContains(String partialdescription) {
+    public static Specification<Product> descriptionContains(String partialDescription) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.like(criteriaBuilder.lower(root.get("description")), "%" + partialdescription.toLowerCase() + "%");
+                criteriaBuilder.like(criteriaBuilder.lower(root.get("description")), "%" + partialDescription.toLowerCase() + "%");
     }
 
 //    Filtro materiali
@@ -76,6 +76,5 @@ public class ProductSpecification {
         return (root, query, criteriaBuilder) ->
                 criteriaBuilder.equal(root.get("highlighted"), highlighted);
     }
-
 
 }

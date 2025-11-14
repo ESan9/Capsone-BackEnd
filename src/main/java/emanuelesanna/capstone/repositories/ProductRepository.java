@@ -13,4 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, UUID>, JpaSpec
     Optional<Product> findBySlug(String slug);
 
     boolean existsByName(String name);
+
+    Optional<Product> findByName(String name);
 }
