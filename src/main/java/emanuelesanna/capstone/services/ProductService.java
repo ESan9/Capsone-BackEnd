@@ -15,9 +15,7 @@ import emanuelesanna.capstone.repositories.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -178,18 +176,14 @@ public class ProductService {
             UUID categoryId,
             Availability availability,
             Boolean highlighted,
-            int page,
-            int size,
-            String sortBy,
-            String sortDir
+            Pageable pageable
     ) {
-        Sort.Direction direction = "DESC".equalsIgnoreCase(sortDir) ? Sort.Direction.DESC : Sort.Direction.ASC;
-        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
 
-        // Trova tutto
-        Specification<Product> spec = Specification.conjunction();
+        // Trovo tutto
 
-        // Questo è una sorta di costruttore condizionale sarebbe come dire: Se l'utente ha fornito un parametro lo utilizzo.
+        Specification<Product> spec = Specification.where(null);
+
+        // Costruttore condizionale
 
         if (partialName != null && !partialName.isEmpty()) {
             spec = spec.and(ProductSpecification.nameContains(partialName));
@@ -219,7 +213,8 @@ public class ProductService {
             spec = spec.and(ProductSpecification.findHighlightedItems(highlighted));
         }
 
-        // 4. Query finale
+        // Query finale
+
         return productRepository.findAll(spec, pageable);
     }
 
