@@ -1,9 +1,11 @@
 package emanuelesanna.capstone.controllers;
 
 import emanuelesanna.capstone.entities.Category;
+import emanuelesanna.capstone.exceptions.BadRequestException;
 import emanuelesanna.capstone.exceptions.ValidationException;
 import emanuelesanna.capstone.payload.NewCategoryDTO;
 import emanuelesanna.capstone.services.CategoryService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,11 +16,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/category")
+@Slf4j
 public class CategoryController {
 
     @Autowired
@@ -86,4 +91,17 @@ public class CategoryController {
     public void deleteCategory(@PathVariable UUID categoryId) {
         this.categoryService.findByIdAndDelete(categoryId);
     }
+
+    @PostMapping("/{categoryId}/upload-cover")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public Category uploadCoverImage(@PathVariable UUID categoryId,
+                                     @RequestParam("cover") MultipartFile file) {
+        try {
+            return this.categoryService.uploadCoverImage(categoryId, file);
+        } catch (IOException e) {
+            log.error("Upload dell'immagine di copertina fallito per la categoria {}: {}", categoryId, e.getMessage());
+            throw new BadRequestException("Upload dell'immagine fallito: " + e.getMessage());
+        }
+    }
+
 }
