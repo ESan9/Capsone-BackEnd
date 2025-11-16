@@ -3,6 +3,7 @@ package emanuelesanna.capstone.security;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -43,7 +44,9 @@ public class SecurityConfig {
 
         httpSecurity.authorizeHttpRequests(req -> req
                 .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/category/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/product/**").permitAll()
+                .anyRequest().authenticated()
         );
         httpSecurity.cors(Customizer.withDefaults());
 
@@ -59,8 +62,8 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(Arrays.asList(
-                "http://localhost:*",
-                "http://127.0.0.1:*"
+                "http://localhost:5173",
+                "http://localhost:*"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
