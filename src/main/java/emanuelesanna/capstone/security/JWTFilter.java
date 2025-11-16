@@ -1,7 +1,6 @@
 package emanuelesanna.capstone.security;
 
 import emanuelesanna.capstone.entities.User;
-import emanuelesanna.capstone.exceptions.UnauthorizedException;
 import emanuelesanna.capstone.services.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -33,8 +32,10 @@ public class JWTFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String authHeader = request.getHeader("Authorization");
-        if (authHeader == null || !authHeader.startsWith("Bearer "))
-            throw new UnauthorizedException("Inserire il token nell'authorization header nel formato giusto!");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         String accessToken = authHeader.replace("Bearer ", "");
 
@@ -54,9 +55,7 @@ public class JWTFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         AntPathMatcher pathMatcher = new AntPathMatcher();
         String servletPath = request.getServletPath();
-        
-        return pathMatcher.match("/auth/**", servletPath) ||
-                pathMatcher.match("/product/**", servletPath) ||
-                pathMatcher.match("/category/**", servletPath);
+
+        return pathMatcher.match("/auth/**", servletPath);
     }
 }
