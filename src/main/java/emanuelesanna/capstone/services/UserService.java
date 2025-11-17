@@ -37,7 +37,11 @@ public class UserService {
         Role userRole = roleRepository.findByRole(RoleType.USER)
                 .orElseThrow(() -> new NotFoundException("Ruolo USER non trovato. Aggiungilo nel database."));
 
-        User newUser = new User(payload.name(), payload.surname(), payload.email(), bcrypt.encode(payload.password()));
+        User newUser = new User();
+        newUser.setName(payload.name());
+        newUser.setSurname(payload.surname());
+        newUser.setEmail(payload.email());
+        newUser.setPassword(bcrypt.encode(payload.password()));
 
         newUser.getRoles().add(userRole);
 

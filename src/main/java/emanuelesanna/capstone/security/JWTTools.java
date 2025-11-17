@@ -4,6 +4,7 @@ import emanuelesanna.capstone.entities.User;
 import emanuelesanna.capstone.exceptions.UnauthorizedException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Component
+@Slf4j
 public class JWTTools {
     @Value("${jwt.secret}")
     private String secret;
@@ -28,8 +30,9 @@ public class JWTTools {
 
     public void verifyToken(String accessToken) {
         try {
-            Jwts.parser().verifyWith(Keys.hmacShaKeyFor(secret.getBytes())).build().parse(accessToken);
+            Jwts.parser().verifyWith(Keys.hmacShaKeyFor(secret.getBytes())).build().parseSignedClaims(accessToken);
         } catch (Exception ex) {
+            log.error("Errore nella verifica del token: {}", ex.getMessage());
             throw new UnauthorizedException("Errori nel token! Prova ad effettuare di nuovo il login!");
         }
     }
