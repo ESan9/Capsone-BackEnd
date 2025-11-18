@@ -1,5 +1,6 @@
 package emanuelesanna.capstone.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import emanuelesanna.capstone.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,6 +23,7 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private RoleType role;
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private List<User> users = new ArrayList<>();
 
     public Role(RoleType role) {

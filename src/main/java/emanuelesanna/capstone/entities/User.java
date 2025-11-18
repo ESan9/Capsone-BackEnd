@@ -1,6 +1,5 @@
 package emanuelesanna.capstone.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,7 +37,6 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "idUser"),
             inverseJoinColumns = @JoinColumn(name = "idRole")
     )
-    @JsonIgnore
     private List<Role> roles = new ArrayList<>();
 
     public User(String name, String surname, String email, String password) {
