@@ -25,8 +25,8 @@ public class Category {
     private String description;
     private String slug;
     private String coverImageUrl;
-    @JsonIgnore
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Product> products = new ArrayList<>();
 
     public Category(String name, String description, String slug, String coverImageUrl) {

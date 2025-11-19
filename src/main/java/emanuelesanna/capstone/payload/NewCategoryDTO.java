@@ -10,7 +10,6 @@ public record NewCategoryDTO(
         @NotBlank(message = "La descrizione è obbligatoria")
         @Size(min = 10, max = 255, message = "La descrizione deve avere tra 10 e 255 caratteri.")
         String description,
-        @NotBlank(message = "L'immagine di copertina è obbligatoria")
         String coverImageUrl
 ) {
 }

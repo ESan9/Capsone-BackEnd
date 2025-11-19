@@ -1,5 +1,6 @@
 package emanuelesanna.capstone.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class ProductImage {
     private int order;
     @ManyToOne
     @JoinColumn(name = "idProduct")
+    @JsonIgnore
     private Product product;
 
     public ProductImage(String description, String imageUrl, String altText, int order) {
