@@ -49,4 +49,10 @@ public class ExceptionsHandler {
     public ErrorsDTO handleForbidden(AuthorizationDeniedException ex) {
         return new ErrorsDTO("Non hai i permessi per accedere!", LocalDateTime.now());
     }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorsWithListDTO handleUploadErrors(MaxUploadSizeExceededException ex) {
+        return new ErrorsWithListDTO(ex.getMessage(), LocalDateTime.now(), ex.getErrorsMessages());
+    }
 }
