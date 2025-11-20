@@ -50,7 +50,7 @@ public class CategoryController {
         return this.categoryService.findBySlug(slug);
     }
 
-    // 2. CREATE (Solo Admin)
+    // 2. CREATE (Solo Admi)
 
     // POST http://localhost:3001/category (+ payload) 201 CREATED
 
