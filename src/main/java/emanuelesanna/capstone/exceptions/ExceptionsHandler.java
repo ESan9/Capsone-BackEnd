@@ -7,8 +7,10 @@ import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 
 @RestControllerAdvice
 public class ExceptionsHandler {
@@ -51,8 +53,15 @@ public class ExceptionsHandler {
     }
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.PAYLOAD_TOO_LARGE)
     public ErrorsWithListDTO handleUploadErrors(MaxUploadSizeExceededException ex) {
-        return new ErrorsWithListDTO(ex.getMessage(), LocalDateTime.now(), ex.getErrorsMessages());
+
+        String customMessage = "Il file caricato supera le dimensioni massime consentite!";
+
+        return new ErrorsWithListDTO(
+                customMessage,
+                LocalDateTime.now(),
+                Collections.emptyList()
+        );
     }
 }
