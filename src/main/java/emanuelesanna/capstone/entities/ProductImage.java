@@ -18,7 +18,6 @@ public class ProductImage {
     @GeneratedValue
     @Setter(AccessLevel.NONE)
     private UUID idProductImage;
-    private String description;
     private String imageUrl;
     private String altText;
     @Column(name = "display_order")
@@ -28,8 +27,7 @@ public class ProductImage {
     @JsonIgnore
     private Product product;
 
-    public ProductImage(String description, String imageUrl, String altText, int order) {
-        this.description = description;
+    public ProductImage(String imageUrl, String altText, int order) {
         this.imageUrl = imageUrl;
         this.altText = altText;
         this.order = order;
