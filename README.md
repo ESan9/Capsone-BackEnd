@@ -1,29 +1,33 @@
-Capstone Project - Vetrina negozio di artigianato
+# Capstone Project - Vetrina Negozio di Artigianato
 
 **Corso Full Stack Developer - Epicode 2025**
 **Autore:** Emanuele Sanna
 
+> **Live Demo:** [Clicca qui per visitare il sito](https://capstone-frontend-fawn.vercel.app/)
+
 ## Descrizione del Progetto
 
-Questo progetto rappresenta il lavoro conclusivo (Capstone) del percorso di studi Full Stack. L'obiettivo è stato sviluppare un sito vetrina per un negozio di artigianato, diviso in due applicativi distinti (Backend API e Frontend Client).
+Questo progetto rappresenta il lavoro conclusivo (Capstone) del percorso di studi Full Stack. L'obiettivo è stato sviluppare un sito vetrina completo per un negozio di artigianato, diviso in due applicativi distinti (Backend API e Frontend Client).
 
 Il sistema permette la gestione completa di un catalogo prodotti, categorie e upload di immagini, con un'area riservata protetta per l'amministrazione.
 
+---
+
 ## Stack Tecnologico
 
-# Backend (Server-side)
+### Backend (Server-side)
 
 L'architettura backend è costruita secondo il pattern RESTful.
 
 - **Java 21** & **Spring Boot 3**: Framework principale.
 - **Spring Data JPA / Hibernate**: Per l'interazione con il database e ORM.
 - **Spring Security + JWT**: Gestione autenticazione e autorizzazione (Ruoli ADMIN/USER).
-- **PostgreSQL**: Database relazionale ![Schema Database](./SchemaDrawSQL.png)
+- **PostgreSQL**: Database relazionale.
 - **Cloudinary**: Servizio esterno per lo storage e l'ottimizzazione delle immagini.
 - **Maven**: Gestione delle dipendenze.
-- **Docker**: Containerizzazione per il deploy (IN PROGRESS)
+- **Docker**: Containerizzazione per il deploy.
 
-# Frontend (Client-side)
+### Frontend (Client-side)
 
 Interfaccia utente reattiva e performante.
 
@@ -34,9 +38,9 @@ Interfaccia utente reattiva e performante.
 - **Axios**: Client HTTP per le chiamate API.
 - **Heroicons**: Icon set.
 
-# Deployment & DevOps (IN PROGRESS)
+### Deployment & DevOps
 
-Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a una suite di servizi Cloud gratuiti:
+Il progetto è online e accessibile pubblicamente grazie a una suite di servizi Cloud gratuiti:
 
 - **Database:** Neon (PostgreSQL Serverless).
 - **Backend Hosting:** Render (Container Docker).
@@ -44,16 +48,16 @@ Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a
 
 ---
 
-# Funzionalità Principali
+## Funzionalità Principali
 
-# Lato Pubblico (Store)
+### Lato Pubblico (Store)
 
 - Visualizzazione prodotti con paginazione.
 - Filtro prodotti per categoria.
 - Dettaglio singolo prodotto con galleria immagini.
 - Design responsive per mobile e desktop.
 
-# Pannello Amministratore (Dashboard)
+### Pannello Amministratore (Dashboard)
 
 - **Autenticazione Sicura:** Login tramite token JWT.
 - **Gestione Categorie:** CRUD completo (Crea, Leggi, Aggiorna, Elimina) con upload immagine di copertina.
@@ -63,15 +67,21 @@ Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a
 
 ---
 
+## Database Schema
+
+![Schema Database](./SchemaDrawSQL.png)
+
+---
+
 ## Installazione e Setup Locale
 
-# Prerequisiti
+### Prerequisiti
 
-- Java 17 o superiore.
+- Java 21.
 - Node.js e npm.
 - PostgreSQL installato localmente (o un'istanza cloud accessibile).
 
-# 1. Configurazione Backend
+### 1. Configurazione Backend
 
 1.  Clona il repository.
 2.  Apri la cartella `backend`.
@@ -87,12 +97,12 @@ Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a
     ADMIN_EMAIL=...
     ADMIN_PASSWORD=...
     ```
-4.  Il file `application.properties` userà queste variabili (assicurati che corrisponda):
+4.  Il file `application.properties` userà queste variabili. Assicurati che contenga:
     ```properties
-    spring.config.import=file:env.properties
+    spring.config.import=optional:file:env.properties
     spring.application.name=capstone
     server.port=3001
-    # ... resto della configurazione
+    # ... resto della configurazione standard
     ```
 5.  Avvia l'applicazione:
     ```bash
@@ -116,15 +126,23 @@ Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a
     npm run dev
     ```
 
+---
+
 ## Anteprima (Screenshots)
 
-**Lato Pubblico:**
-![Home Page 1](./HomeP.png)
-![Home Page 2](./HomeP2.png)
+### Lato Pubblico
 
-**Pannello Amministratore:**
-![Admin Page 1](./Admin1.png)
-![Admin Page 2](./Admin2.png)
+|       Home Page - Top       |       Home Page - List       |
+| :-------------------------: | :--------------------------: |
+| ![Home Page 1](./HomeP.png) | ![Home Page 2](./HomeP2.png) |
+
+### Pannello Amministratore
+
+|           Dashboard           |           Gestione            |
+| :---------------------------: | :---------------------------: |
+| ![Admin Page 1](./Admin1.png) | ![Admin Page 2](./Admin2.png) |
+
+---
 
 ## Contatti
 
@@ -136,7 +154,3 @@ Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a
 ---
 
 _Progetto realizzato per il corso Epicode 2025._
-
-```
-
-```
