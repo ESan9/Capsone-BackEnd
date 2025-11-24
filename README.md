@@ -63,7 +63,7 @@ Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a
 
 ---
 
-## 🚀 Installazione e Setup Locale
+## Installazione e Setup Locale
 
 # Prerequisiti
 
