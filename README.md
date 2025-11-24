@@ -21,7 +21,7 @@ L'architettura backend è costruita secondo il pattern RESTful.
 - **PostgreSQL**: Database relazionale(./path/to/screenshot1.png)
 - **Cloudinary**: Servizio esterno per lo storage e l'ottimizzazione delle immagini.
 - **Maven**: Gestione delle dipendenze.
-- **Docker**: Containerizzazione per il deploy.
+- **Docker**: Containerizzazione per il deploy (IN PROGRESS)
 
 # Frontend (Client-side)
 
