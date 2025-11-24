@@ -18,7 +18,7 @@ L'architettura backend è costruita secondo il pattern RESTful.
 - **Java 21** & **Spring Boot 3**: Framework principale.
 - **Spring Data JPA / Hibernate**: Per l'interazione con il database e ORM.
 - **Spring Security + JWT**: Gestione autenticazione e autorizzazione (Ruoli ADMIN/USER).
-- **PostgreSQL**: Database relazionale(./path/to/screenshot1.png)
+- **PostgreSQL**: Database relazionale ![Schema Database](./SchemaDrawSQL.png)
 - **Cloudinary**: Servizio esterno per lo storage e l'ottimizzazione delle immagini.
 - **Maven**: Gestione delle dipendenze.
 - **Docker**: Containerizzazione per il deploy (IN PROGRESS)
@@ -74,35 +74,26 @@ Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a
 # 1. Configurazione Backend
 
 1.  Clona il repository.
-
 2.  Apri la cartella `backend`.
-
-3.  Crea un file `.env` nella root del frontend dove conserverai le variabili d'ambiente:
-    spring.datasource.url=jdbc:postgresql://localhost:5432/tuo_db
-    spring.datasource.username=tuo_user
-    spring.datasource.password=tua_password
-    cloudinary.cloud_name=...
-    cloudinary.api_key=...
-    cloudinary.api_secret=...
-    jwt.secret=...
-
-4.  Questo servirà a popolare il file application properties:
+3.  Crea un file chiamato `env.properties` nella root del **backend** dove conserverai le variabili d'ambiente:
+    ```properties
+    DB_URL=jdbc:postgresql://localhost:5432/tuo_db
+    DB_USERNAME=tuo_user
+    DB_PASSWORD=tua_password
+    CLOUDINARY_NAME=...
+    CLOUDINARY_KEY=...
+    CLOUDINARY_SECRET=...
+    JWT_SECRET=...
+    ADMIN_EMAIL=...
+    ADMIN_PASSWORD=...
+    ```
+4.  Il file `application.properties` userà queste variabili (assicurati che corrisponda):
+    ```properties
     spring.config.import=file:env.properties
     spring.application.name=capstone
-    spring.datasource.url=${DB_URL}
-    spring.datasource.username=${DB_USERNAME}
-    spring.datasource.password=${DB_PASSWORD}
     server.port=3001
-    spring.jpa.hibernate.ddl-auto=update
-    cloudinary.name=${CLOUDINARY_NAME}
-    cloudinary.key=${CLOUDINARY_KEY}
-    cloudinary.secret=${CLOUDINARY_SECRET}
-    jwt.secret=${JWT_SECRET}
-    spring.datasource.driver=org.postgresql.Driver
-    admin.email=${ADMIN_EMAIL}
-    admin.password=${ADMIN_PASSWORD}
-    spring.servlet.multipart.resolve-lazily=true
-
+    # ... resto della configurazione
+    ```
 5.  Avvia l'applicazione:
     ```bash
     mvn spring-boot:run
@@ -110,26 +101,30 @@ Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a
 
 ### 2. Configurazione Frontend
 
-1. https://github.com/ESan9/capstone-frontend.git
-2. Clona il repository.
-3. Apri la cartella `frontend` nel terminale.
-4. Installa le dipendenze:
-   ```bash
-   npm install
-   ```
+1.  Clona il repository: `https://github.com/ESan9/capstone-frontend.git`
+2.  Apri la cartella `frontend` nel terminale.
+3.  Installa le dipendenze:
+    ```bash
+    npm install
+    ```
+4.  Crea un file `.env` nella root del frontend:
+    ```env
+    VITE_API_URL=http://localhost:3001/api
+    ```
+5.  Avvia il server di sviluppo:
+    ```bash
+    npm run dev
+    ```
 
-````
+## Anteprima (Screenshots)
 
-5. Crea un file `.env` nella root del frontend:
-   ```env
-   VITE_API_URL=http://localhost:8080/api
-   ```
-6. Avvia il server di sviluppo:
-   ```bash
-   npm run dev
-   ```
+**Lato Pubblico:**
+![Home Page 1](./HomeP.png)
+![Home Page 2](./HomeP2.png)
 
----
+**Pannello Amministratore:**
+![Admin Page 1](./Admin1.png)
+![Admin Page 2](./Admin2.png)
 
 ## Contatti
 
@@ -141,4 +136,7 @@ Il progetto al momento non è online ma sarà accessibile pubblicamente grazie a
 ---
 
 _Progetto realizzato per il corso Epicode 2025._
-````
+
+```
+
+```
