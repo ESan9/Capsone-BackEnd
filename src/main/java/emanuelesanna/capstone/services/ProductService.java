@@ -181,7 +181,7 @@ public class ProductService {
 
         // Trovo tutto
 
-        Specification<Product> spec = Specification.where(null);
+        Specification<Product> spec = (root, query, cb) -> cb.conjunction();
 
         // Costruttore condizionale
 
