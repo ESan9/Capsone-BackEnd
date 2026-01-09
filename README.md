@@ -119,7 +119,7 @@ Il progetto è online e accessibile pubblicamente grazie a una suite di servizi 
     ```
 4.  Crea un file `.env` nella root del frontend:
     ```env
-    VITE_API_URL=http://localhost:3001/api
+    VITE_API_URL=http://localhost:3001/
     ```
 5.  Avvia il server di sviluppo:
     ```bash
