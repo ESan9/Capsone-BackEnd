@@ -3,7 +3,7 @@
 **Corso Full Stack Developer - Epicode 2025**
 **Autore:** Emanuele Sanna
 
-> **Live Demo:** [Clicca qui per visitare il sito](https://capstone-frontend-fawn.vercel.app/)
+> **Live Demo:** [Clicca qui per visitare il sito](https://segnaliart.vercel.app/)
 
 ## Descrizione del Progetto
 
