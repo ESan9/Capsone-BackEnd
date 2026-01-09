@@ -63,8 +63,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(List.of(
                 "http://localhost:5173",
-                "https://segnaliart.vercel.app/",
-                "https://capstone-frontend-ka0yiwk34-emanueles-projects-95881b71.vercel.app"
+                "https://segnaliart.vercel.app/"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
